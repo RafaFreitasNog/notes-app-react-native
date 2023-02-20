@@ -55,6 +55,8 @@ function AuthProvider({ children }) {
         if (storageToken) {
           api.defaults.headers.authtoken = `${storageToken}`
           revalidateUser()
+        } else {
+          setLoading(false)
         }
       } catch (error) {
         console.log(error);

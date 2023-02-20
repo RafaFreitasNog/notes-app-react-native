@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { AuthContext } from '../contexts/auth';
 import NotesService from '../services/notes';
 import UserService from '../services/users';
@@ -28,21 +28,34 @@ export function ScreenNotesList() {
   }, [])
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>{user.name}</Text>
       <Pressable onPress={() => {signOut()}}>
         <Text>Sign Out</Text>
       </Pressable>
       {fetching ? <Text>Loading...</Text> : 
-      <View>
+      <View style={styles.notesList}>
         {notes.map((note) => 
-          <Text>{note.title}</Text>
+          <NoteListElement
+          key={note.id}
+          title={note.title}
+          text={note.body}
+          />
         )}
       </View>
       }
-    </View>
+    </SafeAreaView>
 
   );
+}
+
+function NoteListElement(props) {
+  return (
+    <View style={styles.listElement}>
+      <Text>{props.title}</Text>
+      <Text>{props.body}</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -50,5 +63,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  notesList: {
+    backgroundColor: '#ff4',
+  },
+  listElement: {
+    backgroundColor: '#f4f',
   }
 })

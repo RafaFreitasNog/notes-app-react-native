@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import { StyleSheet, View } from 'react-native';
 import { LoadingScreen } from '../components/loadingScreen';
 import { AuthContext } from '../contexts/auth';
 import { ScreenLogin } from '../pages/ScreenLogin';
-import { ScreenNotesList } from '../pages/ScreenNotesList';
+import { AppTabRoutes } from './appTab.routes';
 
 export default function Routes() {
 
@@ -13,5 +12,5 @@ export default function Routes() {
     return <LoadingScreen />
   }
 
-  return auth ? <ScreenNotesList /> : <ScreenLogin />
+  return auth ? <AppTabRoutes /> : <ScreenLogin />
 }
