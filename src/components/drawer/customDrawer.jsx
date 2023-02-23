@@ -64,13 +64,9 @@ const styles = StyleSheet.create({
   profileSection: {
     padding: 12
   },
-  usernameText: {
-    color: '#fff',
-    fontSize: 18,
-  },
   nameText: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   notesView: {
