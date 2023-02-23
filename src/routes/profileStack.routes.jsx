@@ -1,0 +1,29 @@
+import { createStackNavigator } from "@react-navigation/stack";
+import { ScreenProfile } from "../pages/ScreenProfile";
+
+const Stack = createStackNavigator();
+
+export function ProfileStack() {
+  return (
+    <Stack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: '#aacc00',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontSize: 24
+      },
+      headerLeftContainerStyle: {
+          paddingLeft: 12
+        },
+      }}
+    >
+      <Stack.Screen name='Prof' component={ScreenProfile} 
+      options={{
+        title: 'Profile'
+      }}
+      />
+    </Stack.Navigator>
+  )
+}

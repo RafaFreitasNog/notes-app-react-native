@@ -2,11 +2,10 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { AuthContext } from '../contexts/auth';
 import NotesService from '../services/notes';
-import UserService from '../services/users';
 
 export function ScreenNotesList() {
 
-  const { auth, user, loading, signOut } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const [fetching, setFetching] = useState(true);
   const [notes, setNotes] = useState();
 
@@ -29,10 +28,6 @@ export function ScreenNotesList() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>{user.name}</Text>
-      <Pressable onPress={() => {signOut()}}>
-        <Text>Sign Out</Text>
-      </Pressable>
       {fetching ? <Text>Loading...</Text> : 
       <View style={styles.notesList}>
         {notes.map((note) => 

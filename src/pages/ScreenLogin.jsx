@@ -15,7 +15,7 @@ export function ScreenLogin() {
         console.log(response.response.data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.log('error');
     }
   }
 
@@ -65,7 +65,7 @@ export function ScreenLogin() {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#a5be00',
+    backgroundColor: '#aacc00',
   },
   avoidKeyboard: {
     flex: 1
@@ -82,11 +82,11 @@ export const styles = StyleSheet.create({
   logoText: {
     fontSize: 72,
     fontWeight: 'bold',
-    color: '#ebf2fa',
+    color: '#fff',
   },
   loginText: {
     fontSize: 24,
-    color: '#ebf2fa',
+    color: '#fff',
     fontWeight: 'bold',
     marginBottom: 32
   },
@@ -95,7 +95,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   textInput: {
-    backgroundColor: '#ebf2fa',
+    backgroundColor: '#fff',
     width: '100%',
     height: 48,
     borderRadius: '50%',
@@ -114,7 +114,7 @@ export const styles = StyleSheet.create({
   },
   signInText: {
     fontSize: 24,
-    color: '#ebf2fa',
+    color: '#fff',
     fontWeight: 'bold',
     marginHorizontal: 24
   },
