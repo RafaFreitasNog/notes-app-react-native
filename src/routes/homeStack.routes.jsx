@@ -13,7 +13,6 @@ export function HomeStack() {
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
-        fontSize: 24
       },
       headerLeftContainerStyle: {
           paddingLeft: 12

@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   bottomSection: {
     paddingVertical: 12,
     borderTopWidth: 1,
-    borderTopColor: '#ced4da'
+    borderTopColor: '#dee2e6'
   },
   bottomSectionItem: {
     flexDirection: 'row',
