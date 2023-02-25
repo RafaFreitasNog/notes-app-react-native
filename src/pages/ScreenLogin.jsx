@@ -4,7 +4,7 @@ import { AuthContext } from '../contexts/auth';
 
 export function ScreenLogin() {
 
-  const { auth, user, signIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -15,7 +15,7 @@ export function ScreenLogin() {
         console.log(response.response.data.message);
       }
     } catch (error) {
-      console.log('error');
+      console.log(error);
     }
   }
 
@@ -107,7 +107,7 @@ export const styles = StyleSheet.create({
   signInButton: {
     height: 48,
     backgroundColor: '#05668d',
-    borderRadius: 4,
+    borderRadius: 10,
     marginTop: 32,
     alignItems: 'center',
     justifyContent: 'center',

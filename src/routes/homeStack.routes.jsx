@@ -1,5 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { MenuBurguer } from "../components/header/menuBurguer";
+import { ScreenNote } from "../pages/ScreenNote";
 import { HomeDrawer } from "./homeDrawer.routes";
 
 const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ export function HomeStack() {
         title: 'Notes'
       }}
       />
+      <Stack.Screen name="NoteHomeStack" component={ScreenNote} />
     </Stack.Navigator>
   )
 }

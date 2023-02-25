@@ -1,14 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { AuthContext } from '../contexts/auth';
 import NotesService from '../services/notes';
 import { Ionicons } from "@expo/vector-icons";
 
-export function ScreenNotesList() {
+export function ScreenNotesList({ navigation }) {
 
   const { user, loading } = useContext(AuthContext);
   const [fetching, setFetching] = useState(true);
   const [notes, setNotes] = useState();
+
+  function handleNoteClick(id) {
+    navigation.navigate('NoteHomeStack', {
+      noteId: id,
+    })
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -37,15 +43,22 @@ export function ScreenNotesList() {
           placeholderTextColor={'#adb5bd'}
           />
         </View>
+        <View style={styles.searchBottomWrapper}>
+          <Text style={styles.searchBottomText}>Edit</Text>
+          <Text style={styles.searchBottomText}>Add new</Text>
+        </View>
       </View>
       {fetching ? <Text>Loading...</Text> : 
       <View style={styles.notesList}>
         {notes.map((note) => 
+          <Pressable onPress={() => {handleNoteClick(note.id)}} 
+            key={note.id}
+          >
           <NoteListElement
-          key={note.id}
-          title={note.title}
-          body={note.body}
+            title={note.title}
+            body={note.body}
           />
+          </Pressable>
         )}
       </View>
       }
@@ -56,10 +69,10 @@ export function ScreenNotesList() {
 
 function NoteListElement(props) {
   return (
-    <View style={styles.listElement}>
-      <Text numberOfLines={1} style={styles.elementTitle}>{props.title}</Text>
-      <Text numberOfLines={1} style={styles.elementBody}>{props.body}</Text>
-    </View>
+      <View style={styles.listElement}>
+        <Text numberOfLines={1} style={styles.elementTitle}>{props.title}</Text>
+        <Text numberOfLines={1} style={styles.elementBody}>{props.body}</Text>
+      </View>
   )
 }
 
@@ -71,17 +84,27 @@ const styles = StyleSheet.create({
   },
   searchInputView: {
     backgroundColor: '#e9ecef',
-    borderRadius: '50%',
+    borderRadius: 10,
     margin: 12,
     paddingHorizontal: 12,
     flexDirection: 'row',
     alignItems: 'center'
   },
   searchInput: {
-    height: 32,
+    height: 40,
     width: '100%',
     paddingLeft: 8,
     color: '#212529'
+  },
+  searchBottomWrapper: {
+    flexDirection: 'row',
+    marginHorizontal: 12,
+    justifyContent: 'space-between',
+    marginVertical: 12
+  },
+  searchBottomText: {
+    fontSize: 16,
+    color: '#007aff'
   },
   notesList: {
     borderBottomWidth: 1,
