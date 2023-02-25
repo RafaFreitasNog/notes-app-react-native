@@ -10,9 +10,9 @@ export function ScreenNotesList({ navigation }) {
   const [fetching, setFetching] = useState(true);
   const [notes, setNotes] = useState();
 
-  function handleNoteClick(id) {
+  function handleNoteClick(note) {
     navigation.navigate('NoteHomeStack', {
-      noteId: id,
+      note: note,
     })
   }
 
@@ -51,7 +51,7 @@ export function ScreenNotesList({ navigation }) {
       {fetching ? <Text>Loading...</Text> : 
       <View style={styles.notesList}>
         {notes.map((note) => 
-          <Pressable onPress={() => {handleNoteClick(note.id)}} 
+          <Pressable onPress={() => {handleNoteClick(note)}} 
             key={note.id}
           >
           <NoteListElement
