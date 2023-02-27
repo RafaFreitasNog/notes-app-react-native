@@ -28,7 +28,9 @@ export function ScreenNotesList({ navigation }) {
     }
 
     if (loading === false) {
-      fetchData()
+      navigation.addListener('focus', () => {
+        fetchData()
+      })
     }
 
   }, [])

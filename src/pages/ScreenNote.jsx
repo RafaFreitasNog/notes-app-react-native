@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { AuthContext } from '../contexts/auth';
 import NotesService from '../services/notes';
 
@@ -13,6 +13,21 @@ export function ScreenNote({ route }) {
 
   function handleTitleChange(value) {
     setTitle(value)
+  }
+
+  function handleBodyChange(value) {
+    setBody(value)
+  }
+
+  async function handleSaveClick() {
+    try {
+      const response = await NotesService.editNote(note.id, {
+        title: title,
+        body: body
+      })
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -29,7 +44,11 @@ export function ScreenNote({ route }) {
 
   return (
     <View style={styles.container}>
-      <Text></Text>
+      <Pressable style={styles.saveButton} 
+      onPress={() => {handleSaveClick()}}
+      >
+        <Text style={styles.buttonText}>Save</Text>
+      </Pressable>
       <ScrollView style={styles.inputsScroll}>
         <TextInput
           style={styles.titleInput}
@@ -42,7 +61,7 @@ export function ScreenNote({ route }) {
           style={styles.bodyInput}
           value={body}
           placeholder='Body'
-          onChangeText={(value) => { handleTitleChange(value) }}
+          onChangeText={(value) => { handleBodyChange(value) }}
           multiline={true}
         />
       </ScrollView>
@@ -56,8 +75,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 16
   },
+  saveButton: {
+    backgroundColor: '#05668d',
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16
+  },
+  buttonText: {
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
+    paddingVertical: 6
+  },
   inputsScroll: {
-    backgroundColor: '#ff4',
     flex: 1
   },
   titleInput: {

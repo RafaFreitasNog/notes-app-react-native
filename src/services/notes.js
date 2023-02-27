@@ -9,6 +9,10 @@ const NotesService = {
     const response = await api.get(`/notes/${noteId}`)
     return response
   },
+  editNote: async (noteId, params) => {
+    const response = await api.put(`/notes/${noteId}`, params)
+    return response
+  }
 }
 
 export default NotesService;
