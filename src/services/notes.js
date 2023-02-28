@@ -12,7 +12,11 @@ const NotesService = {
   editNote: async (noteId, params) => {
     const response = await api.put(`/notes/${noteId}`, params)
     return response
-  }
+  },
+  postNote: async (params) => {
+    const response = await api.post(`/notes`, params)
+    return response
+  },
 }
 
 export default NotesService;

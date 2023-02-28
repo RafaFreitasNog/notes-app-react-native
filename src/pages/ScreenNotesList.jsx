@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { AuthContext } from '../contexts/auth';
 import NotesService from '../services/notes';
 import { Ionicons } from "@expo/vector-icons";
@@ -14,6 +14,10 @@ export function ScreenNotesList({ navigation }) {
     navigation.navigate('NoteHomeStack', {
       note: note,
     })
+  }
+
+  function handleNewNoteClick() {
+    navigation.navigate('NewNoteHomeStack')
   }
 
   useEffect(() => {
@@ -46,12 +50,16 @@ export function ScreenNotesList({ navigation }) {
           />
         </View>
         <View style={styles.searchBottomWrapper}>
-          <Text style={styles.searchBottomText}>Edit</Text>
-          <Text style={styles.searchBottomText}>Add new</Text>
+          <Pressable>
+            <Text style={styles.searchBottomText}>Edit</Text>
+          </Pressable>
+          <Pressable onPress={() => {handleNewNoteClick()}}>  
+            <Text style={styles.searchBottomText}>Add new</Text>
+          </Pressable>
         </View>
       </View>
       {fetching ? <Text>Loading...</Text> : 
-      <View style={styles.notesList}>
+      <ScrollView style={styles.notesList}>
         {notes.map((note) => 
           <Pressable onPress={() => {handleNoteClick(note)}} 
             key={note.id}
@@ -62,7 +70,13 @@ export function ScreenNotesList({ navigation }) {
           />
           </Pressable>
         )}
-      </View>
+        <Pressable onPress={() => {handleNewNoteClick()}}>
+          <View style={styles.createNewContainer}>
+            <Ionicons name='ios-add' size={24} color={'#aacc00'} />
+            <Text style={styles.createNewText}>Create New</Text>
+          </View>
+        </Pressable>
+      </ScrollView>
       }
     </SafeAreaView>
 
@@ -109,8 +123,7 @@ const styles = StyleSheet.create({
     color: '#007aff'
   },
   notesList: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#dee2e6'
+    flex: 1
   },
   listElement: {
     borderTopWidth: 1,
@@ -126,5 +139,20 @@ const styles = StyleSheet.create({
   elementBody: {
     color: '#6c757d',
     fontSize: 14
-  }
+  },
+  createNewContainer: {
+    borderTopWidth: 1,
+    borderTopColor: '#dee2e6',
+    padding: 12,
+    flexDirection: 'row',
+    alignContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#dee2e6'
+  },
+  createNewText: {
+    color: '#6c757d',
+    fontSize: 16,
+    marginHorizontal: 4
+  },  
 })

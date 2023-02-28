@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { Text } from "react-native";
-import { MenuBurguer } from "../components/header/menuBurguer";
+import { NoteHeaderRight } from "../components/header/noteHeaderRight";
+import { ScreenNewNote } from "../pages/ScreenNewNote";
 import { ScreenNote } from "../pages/ScreenNote";
 import { HomeDrawer } from "./homeDrawer.routes";
 
@@ -8,7 +8,6 @@ const Stack = createStackNavigator();
 
 export function HomeStack() {
   return (
-//    <SaveNoteProvider>
       <Stack.Navigator
       screenOptions={{
         headerStyle: {
@@ -24,19 +23,26 @@ export function HomeStack() {
       >
         <Stack.Screen name='HomeStack' component={HomeDrawer} 
         options={{
-          headerLeft: () => (
-            <MenuBurguer />
-          ),
           headerShown: false,
           title: 'Notes'
         }}
         />
         <Stack.Screen name="NoteHomeStack" component={ScreenNote} 
         options={{
-          title: 'Notes',
+          title: 'Note',
+          headerRight: () => (
+            <NoteHeaderRight />
+          ),
+          headerRightContainerStyle: {
+            paddingRight: 12
+          },
+        }}
+        />
+        <Stack.Screen name="NewNoteHomeStack" component={ScreenNewNote} 
+        options={{
+          title: 'New Note',
         }}
         />
       </Stack.Navigator>
-//    </SaveNoteProvider>
   )
 }

@@ -4,11 +4,12 @@ import { AuthContext } from '../contexts/auth';
 import NotesService from '../services/notes';
 import { Ionicons } from "@expo/vector-icons";
 
-export function ScreenNote({ route }) {
+export function ScreenNewNote({ route }) {
 
-  const { note } = route.params
   const { loading } = useContext(AuthContext)
   const [fetching, setFetching] = useState(true)
+  const [note, setNote] = useState(true)
+  const [firstEdit, setFirstEdit] = useState(true)
   const [edited, setEdited] = useState(false)
   const [saved, setSaved] = useState(true)
   const [title, setTitle] = useState('')
@@ -31,31 +32,33 @@ export function ScreenNote({ route }) {
   }
 
   async function handleSaveClick() {
-    try {
-      const response = await NotesService.editNote(note.id, {
-        title: title,
-        body: body
-      })
-      setSaved(true)
-    } catch (error) {
-      console.log(error);
+    if (firstEdit) {
+      try {
+        const response = await NotesService.postNote({
+          title: title,
+          body: body
+        })
+        setNote(response.data);
+        setFirstEdit(false)
+        setSaved(true)
+      } catch (error) {
+        console.log(error);
+      }
+    } else {      
+      try {
+        const response = await NotesService.editNote(note.id, {
+          title: title,
+          body: body
+        })
+        setSaved(true)
+      } catch (error) {
+        console.log(error);
+      }
     }
-  }
+    }
 
   useEffect(() => {
-    async function fetchData() {
-      const response = await NotesService.getById(note.id)
-      setTitle(response.data.title)
-      setBody(response.data.body)
-    }
-
-    if (loading == false) {
-      fetchData()
-    }
-  }, [])
-
-  useEffect(() => {
-    if (edited) {      
+    if (edited) {   
       const timer = setTimeout(() => {
         handleSaveClick()
       }, 1000)
