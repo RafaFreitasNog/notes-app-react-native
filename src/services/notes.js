@@ -17,6 +17,10 @@ const NotesService = {
     const response = await api.post(`/notes`, params)
     return response
   },
+  deleteNote: async (noteId) => {
+    const response = await api.delete(`/notes/${noteId}`)
+    return response
+  }
 }
 
 export default NotesService;

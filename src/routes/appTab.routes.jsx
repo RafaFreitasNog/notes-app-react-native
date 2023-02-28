@@ -11,9 +11,9 @@ export function AppTabRoutes() {
     <Tab.Navigator
     screenOptions={{
       headerShown: false,
-      tabBarStyle: {},
       tabBarActiveTintColor: '#aacc00',
       tabBarInactiveTintColor: '#adb5bd',
+      tabBarShowLabel: false
       }}
     >
       <Tab.Screen name='Home' component={HomeStack} 

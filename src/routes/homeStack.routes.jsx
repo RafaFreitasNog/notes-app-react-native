@@ -1,5 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { NoteHeaderRight } from "../components/header/noteHeaderRight";
+import { StackProvider } from "../contexts/homeStack";
 import { ScreenNewNote } from "../pages/ScreenNewNote";
 import { ScreenNote } from "../pages/ScreenNote";
 import { HomeDrawer } from "./homeDrawer.routes";
@@ -8,6 +9,7 @@ const Stack = createStackNavigator();
 
 export function HomeStack() {
   return (
+    <StackProvider>
       <Stack.Navigator
       screenOptions={{
         headerStyle: {
@@ -44,5 +46,6 @@ export function HomeStack() {
         }}
         />
       </Stack.Navigator>
+    </StackProvider>
   )
 }

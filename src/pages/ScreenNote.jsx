@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { AuthContext } from '../contexts/auth';
 import NotesService from '../services/notes';
 import { Ionicons } from "@expo/vector-icons";
+import { StackContext } from '../contexts/homeStack';
+import { NoteModal } from '../components/modal/noteModal';
 
-export function ScreenNote({ route }) {
+export function ScreenNote({ route, navigation }) {
 
   const { note } = route.params
   const { loading } = useContext(AuthContext)
+  const { modalVisible, setModalVisible } = useContext(StackContext)
   const [fetching, setFetching] = useState(true)
   const [edited, setEdited] = useState(false)
   const [saved, setSaved] = useState(true)
@@ -83,6 +86,17 @@ export function ScreenNote({ route }) {
           multiline={true}
         />
       </ScrollView>
+      <Modal
+      visible={modalVisible}
+      transparent={true}
+      animationType={'slide'}
+      onRequestClose={() => {setModalVisible(true)}}
+      >
+        <NoteModal 
+        noteId={note.id}
+        navigation={navigation}
+        />
+      </Modal>
     </View>
   );
 }
