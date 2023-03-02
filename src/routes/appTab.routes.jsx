@@ -13,7 +13,6 @@ export function AppTabRoutes() {
       headerShown: false,
       tabBarActiveTintColor: '#aacc00',
       tabBarInactiveTintColor: '#adb5bd',
-      tabBarShowLabel: false
       }}
     >
       <Tab.Screen name='Home' component={HomeStack} 

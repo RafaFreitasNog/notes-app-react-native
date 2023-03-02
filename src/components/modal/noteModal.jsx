@@ -19,20 +19,24 @@ export function NoteModal(props) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity style={{flex: 1}} onPress={() => {setModalVisible(false)}}></TouchableOpacity>
 
       <View style={styles.content}>
+        <Pressable style={[styles.button, styles.topButton]} onPress={() => {}}>
+          <Ionicons name='ios-duplicate-outline' size={24} color={'#6c757d'}/>
+          <Text style={[styles.text, styles.others]}>Duplicate</Text>
+        </Pressable>
         <Pressable style={styles.button} onPress={() => {handleDelete()}}>
-          <Ionicons name='ios-trash-outline' size={32} color={'#e5383b'}/>
+          <Ionicons name='ios-trash-outline' size={24} color={'#e5383b'}/>
           <Text style={[styles.text, styles.delete]}>Delete note</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={() => {setModalVisible(false)}}>
-          <Ionicons name='ios-close-circle-outline' size={32} color={'#212529'}/>
+          <Ionicons name='ios-close-circle-outline' size={24} color={'#212529'}/>
           <Text style={[styles.text, styles.close]}>Close menu</Text>
         </Pressable>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -44,6 +48,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
+    shadowColor: "#000",
+    paddingBottom: 40,
+
+    shadowOffset: {
+	    width: 0,
+	    height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   button: {
     paddingHorizontal: 24,
@@ -55,6 +70,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start'
   },
+  topButton: {
+    borderTopWidth: 0,
+  },
   text: {
     fontSize: 16,
     marginLeft: 8
@@ -64,5 +82,8 @@ const styles = StyleSheet.create({
   },
   close: {
     color: '#212529'
-  }
+  },
+  others: {
+    color: '#6c757d'
+  },
 })
