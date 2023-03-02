@@ -11,7 +11,6 @@ export function NoteModal(props) {
   async function handleDelete() {
     try {
       const response = await NotesService.deleteNote(props.noteId)
-      console.log(response.data);
       setModalVisible(false)
       props.navigation.navigate('HomeStack')
     } catch (error) {
