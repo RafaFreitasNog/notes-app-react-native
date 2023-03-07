@@ -11,14 +11,22 @@ export function ScreenNotesList({ navigation }) {
   const [notes, setNotes] = useState();
 
   function handleNoteClick(note) {
-    navigation.navigate('NoteHomeStack', {
+    navigation.navigate('HomeStackNote', {
       note: note,
     })
   }
 
   function handleNewNoteClick() {
-    navigation.navigate('NewNoteHomeStack')
+    navigation.navigate('HomeStackNewNote')
   }
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      navigation.getParent().getParent().setOptions({
+        swipeEnabled: true
+      })
+    })
+  }, [])
 
   useEffect(() => {
     async function fetchData() {

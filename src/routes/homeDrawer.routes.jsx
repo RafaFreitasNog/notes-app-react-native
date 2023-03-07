@@ -1,8 +1,7 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
 import { CustomDrawer } from '../components/drawer/customDrawer';
-import { ScreenFavorites } from '../pages/ScreenFavorites';
-import { ScreenNotesList } from '../pages/ScreenNotesList';
+import { AppTabRoutes } from './appTab.routes';
 
 const Drawer = createDrawerNavigator();
 
@@ -10,7 +9,9 @@ export function HomeDrawer() {
   return (
     <Drawer.Navigator
     drawerContent={props => <CustomDrawer {...props} />}
+    initialRouteName= 'HomeDrawerHome'
     screenOptions={{
+      headerShown: false,
       headerStyle: {
         backgroundColor: '#aacc00',
       },
@@ -18,18 +19,11 @@ export function HomeDrawer() {
       headerTitleStyle: {
       },
       headerLeftContainerStyle: {
-          paddingLeft: 12
       },
-    }} >
-      <Drawer.Screen name='HomeDrawer' component={ScreenNotesList} 
-      options={{
-        title: 'Notes'
-      }}
-      />
-      <Drawer.Screen name='FavoriteDrawer' component={ScreenFavorites} 
-      options={{
-        title: 'Favorites'
-      }}
+      swipeEnabled: false
+    }
+    }>
+      <Drawer.Screen name='HomeDrawerHome' component={AppTabRoutes}
       />
     </Drawer.Navigator>
   );

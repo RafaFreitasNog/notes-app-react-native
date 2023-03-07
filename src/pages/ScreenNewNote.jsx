@@ -4,7 +4,7 @@ import { AuthContext } from '../contexts/auth';
 import NotesService from '../services/notes';
 import { Ionicons } from "@expo/vector-icons";
 
-export function ScreenNewNote({ route }) {
+export function ScreenNewNote({ route, navigation }) {
 
   const { loading } = useContext(AuthContext)
   const [fetching, setFetching] = useState(true)
@@ -30,6 +30,14 @@ export function ScreenNewNote({ route }) {
     }
     setSaved(false)
   }
+
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      navigation.getParent().getParent().setOptions({
+        swipeEnabled: false
+      })
+    })
+  }, [])
 
   async function handleSaveClick() {
     if (firstEdit) {

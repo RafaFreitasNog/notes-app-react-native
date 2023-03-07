@@ -3,7 +3,7 @@ import { NoteHeaderRight } from "../components/header/noteHeaderRight";
 import { StackProvider } from "../contexts/homeStack";
 import { ScreenNewNote } from "../pages/ScreenNewNote";
 import { ScreenNote } from "../pages/ScreenNote";
-import { HomeDrawer } from "./homeDrawer.routes";
+import { ScreenNotesList } from "../pages/ScreenNotesList";
 
 const Stack = createStackNavigator();
 
@@ -11,6 +11,7 @@ export function HomeStack() {
   return (
     <StackProvider>
       <Stack.Navigator
+      initialRouteName="HomeStackHome"
       screenOptions={{
         headerStyle: {
           backgroundColor: '#aacc00',
@@ -23,15 +24,14 @@ export function HomeStack() {
         },
         }}
       >
-        <Stack.Screen name='HomeStack' component={HomeDrawer} 
+        <Stack.Screen name='HomeStackHome' component={ScreenNotesList} 
         options={{
-          headerShown: false,
           title: 'Notes'
         }}
         />
-        <Stack.Screen name="NoteHomeStack" component={ScreenNote} 
+        <Stack.Screen name="HomeStackNote" component={ScreenNote} 
         options={{
-          title: 'Note',
+          title: '',
           headerRight: () => (
             <NoteHeaderRight />
           ),
@@ -40,7 +40,7 @@ export function HomeStack() {
           },
         }}
         />
-        <Stack.Screen name="NewNoteHomeStack" component={ScreenNewNote} 
+        <Stack.Screen name="HomeStackNewNote" component={ScreenNewNote} 
         options={{
           title: 'New Note',
         }}

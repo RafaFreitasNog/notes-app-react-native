@@ -1,16 +1,18 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { Ionicons } from "@expo/vector-icons";
-import { HomeStack } from './homeStack.routes';
 import { ProfileStack } from './profileStack.routes';
+import { HomeStack } from './homeStack.routes';
 
 const Tab = createBottomTabNavigator()
 
 export function AppTabRoutes() {
   return (
     <Tab.Navigator
+    initialRouteName='Home'
     screenOptions={{
       headerShown: false,
+      tabBarShowLabel: false,
       tabBarActiveTintColor: '#aacc00',
       tabBarInactiveTintColor: '#adb5bd',
       }}

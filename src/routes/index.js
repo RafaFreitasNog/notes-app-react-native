@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { LoadingScreen } from '../components/loadingScreen';
 import { AuthContext } from '../contexts/auth';
 import { ScreenLogin } from '../pages/ScreenLogin';
-import { AppTabRoutes } from './appTab.routes';
+import { HomeDrawer } from './homeDrawer.routes';
 
 export default function Routes() {
 
@@ -12,5 +12,5 @@ export default function Routes() {
     return <LoadingScreen />
   }
 
-  return auth ? <AppTabRoutes /> : <ScreenLogin />
+  return auth ? <HomeDrawer /> : <ScreenLogin />
 }

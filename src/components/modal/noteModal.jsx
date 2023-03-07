@@ -12,7 +12,7 @@ export function NoteModal(props) {
     try {
       const response = await NotesService.deleteNote(props.noteId)
       setModalVisible(false)
-      props.navigation.navigate('HomeStack')
+      props.navigation.navigate('HomeStackHome')
     } catch (error) {
       console.log(error);
     }

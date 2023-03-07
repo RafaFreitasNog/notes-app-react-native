@@ -1,6 +1,6 @@
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import React, { useContext } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { AuthContext } from '../../contexts/auth';
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
@@ -11,7 +11,7 @@ export function CustomDrawer(props) {
   const { user, signOut } = useContext(AuthContext)
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <DrawerContentScrollView {...props} 
       contentContainerStyle={{
         backgroundColor: '#aacc00'
@@ -49,13 +49,13 @@ export function CustomDrawer(props) {
           </View>
         </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   listwrapper: {
     backgroundColor: '#fff',

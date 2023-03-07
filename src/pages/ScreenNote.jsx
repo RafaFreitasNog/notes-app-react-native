@@ -17,6 +17,14 @@ export function ScreenNote({ route, navigation }) {
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
 
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      navigation.getParent().getParent().setOptions({
+        swipeEnabled: false
+      })
+    })
+  }, [])
+
   function handleTitleChange(value) {
     setTitle(value)
     if (edited === false) {
