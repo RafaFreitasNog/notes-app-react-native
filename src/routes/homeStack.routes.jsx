@@ -1,4 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import { MenuHeaderLeft } from "../components/header/menuHeaderLeft";
 import { NoteHeaderRight } from "../components/header/noteHeaderRight";
 import { StackProvider } from "../contexts/homeStack";
 import { ScreenNewNote } from "../pages/ScreenNewNote";
@@ -7,7 +8,7 @@ import { ScreenNotesList } from "../pages/ScreenNotesList";
 
 const Stack = createStackNavigator();
 
-export function HomeStack() {
+export function HomeStack({ navigation }) {
   return (
     <StackProvider>
       <Stack.Navigator
@@ -26,7 +27,12 @@ export function HomeStack() {
       >
         <Stack.Screen name='HomeStackHome' component={ScreenNotesList} 
         options={{
-          title: 'Notes'
+          title: 'Notes',
+          headerLeft: () => (
+            <MenuHeaderLeft 
+            navigation={navigation}
+            />
+          )
         }}
         />
         <Stack.Screen name="HomeStackNote" component={ScreenNote} 
