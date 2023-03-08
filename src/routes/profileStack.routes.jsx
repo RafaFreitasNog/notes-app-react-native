@@ -16,7 +16,6 @@ export function ProfileStack() {
       headerLeftContainerStyle: {
           paddingLeft: 12
       },
-      headerShown: false
       }}
     >
       <Stack.Screen name='Prof' component={ScreenProfile} 

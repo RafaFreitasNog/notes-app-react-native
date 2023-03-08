@@ -12,14 +12,6 @@ export function HomeDrawer() {
     initialRouteName= 'HomeDrawerHome'
     screenOptions={{
       headerShown: false,
-      headerStyle: {
-        backgroundColor: '#aacc00',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-      },
-      headerLeftContainerStyle: {
-      },
       swipeEnabled: false
     }
     }>
