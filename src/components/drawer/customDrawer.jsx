@@ -13,29 +13,44 @@ export function CustomDrawer(props) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.drawerScroll}>
-      <View style={styles.profileSection}>
-        <View style={styles.imageSection}>
-          <Ionicons name='person-circle' color='#212529' size={56}/>
-        </View>
-        <View style={styles.textSection}>
-          <Text style={styles.nameText}>{user.name}</Text>
-          <View style={styles.notesView}>
+
+        <View style={styles.profileSection}>
+
+          <View style={styles.imageSection}>
+            <Ionicons name='person-circle' color='#212529' size={56} />
+          </View>
+
+          <View style={styles.textSection}>
+            <Text style={styles.nameText}>{user.name}</Text>
+
             <Text style={styles.usernameText}>@{user.username}</Text>
-          </View>
-          <View style={styles.notesView}>
-            <Ionicons name='ios-newspaper' color={'#212529'} size={16} /> 
-            <Text style={styles.notesText}>{user._count.written_posts} <Text style={styles.notesLight}>Notes</Text></Text>
+
+            <View style={styles.followInfoContainer}>
+              <View style={styles.followInfoView}>
+                <Text style={styles.followNumber}>{user._count.following} <Text style={styles.followText}>Following</Text></Text>
+              </View>
+
+              <View style={styles.followInfoView}>
+                <Text style={styles.followNumber}>{user._count.followers} <Text style={styles.followText}>Followers</Text></Text>
+              </View>
+            </View>
+
+            <View style={styles.notesView}>
+              <Ionicons name='ios-newspaper' color={'#212529'} size={16} />
+              <Text style={styles.notesText}>{user._count.written_posts} <Text style={styles.notesLight}>Notes</Text></Text>
+            </View>
+
           </View>
         </View>
-      </View>
-      <View style={styles.listwrapper}>
-        <DrawerItemList {...props} />
-      </View>
+
+        <View style={styles.listwrapper}>
+          <DrawerItemList {...props} />
+        </View>
       </ScrollView>
       <View style={styles.bottomSection}>
-        <Pressable onPress={() => {signOut()}} >
+        <Pressable onPress={() => { signOut() }} >
           <View style={styles.bottomSectionItem}>
-            <Ionicons name='ios-exit' color={'#495057'} size={24} style={styles.bottomSectionIcon}/>
+            <Ionicons name='ios-exit' color={'#495057'} size={24} style={styles.bottomSectionIcon} />
             <Text style={styles.bottomSectionText}>Sign Out</Text>
           </View>
         </Pressable>
@@ -55,21 +70,20 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingVertical: 12,
   },
-  profileSection: {
-  },
   nameText: {
     color: '#212529',
     fontSize: 16,
     fontWeight: 'bold',
   },
-  notesView: {
-    flexDirection: 'row',
-    marginTop: 4,
-    alignItems: 'center'
-  },
   usernameText: {
     color: '#6c757d',
     fontSize: 14,
+    marginTop: 4
+  },
+  notesView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 12
   },
   notesText: {
     color: '#212529',
@@ -80,6 +94,22 @@ const styles = StyleSheet.create({
   notesLight: {
     color: '#6c757d',
     fontWeight: 'normal'
+  },
+  followInfoContainer: {
+    marginTop: 12,
+    flexDirection: 'row'
+  },
+  followInfoView: {
+    alignItems: 'center',
+    marginRight: 12
+  },
+  followNumber: {
+    fontSize: 14,
+    fontWeight: 'bold'
+  },
+  followText: {
+    fontWeight: 'normal',
+    color: '#6c757d'
   },
   bottomSection: {
     paddingVertical: 12,
